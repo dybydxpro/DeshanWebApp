@@ -34,5 +34,22 @@ namespace DeshanWebApp.Controllers
             _database.SaveChanges();
             return RedirectToAction("Cart");
         }
+
+        public IActionResult TransferAction()
+        {
+            return View();
+        }
+
+        public IActionResult TransferAssets(string Location)
+        {
+            var obj = _database.Carts.Select(x => x.Id);
+            foreach (var cart in obj)
+            {
+                var data = new Transfer();
+            }
+            
+
+            return View();
+        }
     }
 }

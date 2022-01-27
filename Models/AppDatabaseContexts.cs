@@ -11,5 +11,6 @@ namespace DeshanWebApp.Models
 
         public DbSet<Asset> Assets { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<Transfer> Transfers { get; set; }
     }
 }

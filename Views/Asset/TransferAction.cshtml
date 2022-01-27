@@ -1,0 +1,11 @@
+﻿@model Transfer
+@{
+    ViewData["Title"] = "TransferAction";
+}
+
+<h1>TransferAction</h1>
+<form method="post">
+    <lable asp-for="Location">Location</lable>
+    <input type="text" asp-for="Location" id="Name"/>
+    <a type="button" class="btn btn-primary" asp-controller="Asset" asp-action="TransferAssets">Confirm</a>
+</form>
