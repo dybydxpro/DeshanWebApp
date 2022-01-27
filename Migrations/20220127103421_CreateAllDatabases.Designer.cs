@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeshanWebApp.Migrations
 {
     [DbContext(typeof(AppDatabaseContexts))]
-    [Migration("20220126145730_AddToDatabase")]
-    partial class AddToDatabase
+    [Migration("20220127103421_CreateAllDatabases")]
+    partial class CreateAllDatabases
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

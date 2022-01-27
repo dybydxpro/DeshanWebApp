@@ -32,7 +32,7 @@ namespace DeshanWebApp.Controllers
             obj.ISBN = data.ISBN;
             _database.Carts.Add(obj);
             _database.SaveChanges();
-            return RedirectToAction("Cart");
+            return RedirectToAction("Index");
         }
 
         public IActionResult TransferAction()
@@ -40,16 +40,35 @@ namespace DeshanWebApp.Controllers
             return View();
         }
 
-        public IActionResult TransferAssets(string Location)
+        public IActionResult TransferAssets(TransferDetails td)
         {
-            var obj = _database.Carts.Select(x => x.Id);
-            foreach (var cart in obj)
+            IEnumerable<Cart> Cartobj = _database.Carts.ToList();
+            if (Cartobj == null)
             {
-                var data = new Transfer();
+                return NotFound();
             }
-            
 
-            return View();
+            foreach (var item in Cartobj)
+            {
+                int tempID = item.Id;
+                var data = new Transfer();
+                data.Id = item.AssetID;
+                data.Name = item.Name;
+                data.ISBN = item.ISBN;
+                data.Location = td.Location;
+                _database.Transfers.Add(data);
+                _database.SaveChanges();
+
+                Delete(tempID);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public void Delete(int? id)
+        {
+            var obj = _database.Carts.Find(id);
+            _database.Carts.Remove(obj);
+            _database.SaveChanges();
         }
     }
 }

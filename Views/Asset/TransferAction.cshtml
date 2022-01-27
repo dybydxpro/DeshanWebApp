@@ -1,11 +1,18 @@
-﻿@model Transfer
+﻿@model TransferDetails
 @{
     ViewData["Title"] = "TransferAction";
 }
 
 <h1>TransferAction</h1>
+
+<p></p>
+
 <form method="post">
-    <lable asp-for="Location">Location</lable>
-    <input type="text" asp-for="Location" id="Name"/>
+    <lable for="txtLocation">Location</lable>
+    <input type="text" placeholder="" class="form-control" id="txtLocation" asp-for="Location" required>
+    <br />
+    <lable for="txtDetails">Details</lable>
+    <input type="text" placeholder="" class="form-control" id="txtDetails" asp-for="Details" required>
+    <br />
     <a type="button" class="btn btn-primary" asp-controller="Asset" asp-action="TransferAssets">Confirm</a>
 </form>
