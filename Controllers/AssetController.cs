@@ -48,14 +48,18 @@ namespace DeshanWebApp.Controllers
                 return NotFound();
             }
 
+            //var lastInput = _database.Transfers.OrderByDescending(u => u.TID).FirstOrDefault();
+            //var nextTID = int.Parse(lastInput.TID) + 1;
+            int nextTID = MaxTID();
             foreach (var item in Cartobj)
             {
                 int tempID = item.Id;
                 var data = new Transfer();
-                data.Id = item.AssetID;
+                data.CartID = item.AssetID;
                 data.Name = item.Name;
                 data.ISBN = item.ISBN;
                 data.Location = td.Location;
+                data.TID = nextTID;
                 _database.Transfers.Add(data);
                 _database.SaveChanges();
 
@@ -69,6 +73,12 @@ namespace DeshanWebApp.Controllers
             var obj = _database.Carts.Find(id);
             _database.Carts.Remove(obj);
             _database.SaveChanges();
+        }
+
+        public int MaxTID()
+        {
+            var maxId = (_database.Transfers.Select(q => (int?)q.TID).Max() ?? 0) + 1;
+            return maxId;
         }
     }
 }

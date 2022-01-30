@@ -7,6 +7,10 @@ namespace DeshanWebApp.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        public int CartID { get; set; }
+        [Required]
+        public int TID { get; set; }
+        [Required]
         public string Name { get; set; }
         [Required]
         public string ISBN { get; set; }
